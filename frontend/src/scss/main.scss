@@ -1,0 +1,14 @@
+
+$container-max-widths: (
+  sm: 540px,
+  md: 704px,
+  lg: 924px,
+  xl: 1140px,
+  xxl: 1364px
+);
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/mixins/";
+@import "../../node_modules/bootstrap/scss/variables";
+
+//테마 전부 커스텀할땐 위로 아닐떈 여기
+@import "../../node_modules/bootstrap/scss/bootstrap";
