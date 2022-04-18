@@ -6,36 +6,58 @@
     안녕
     {{ str }}
   </h1>
-  <text @click="sout">
+  <text>
     {{ str }}
     str
   </text>
+  <h3 v-bind="str">
+    {{ comp }}
+  </h3> 
 </template>
 
 <script>
+import UserService from '../services/user.services';
 
 export default {
     data() {
         return {
-            str: ''
-        }
+            str: '',
+            comp: ''
+        };
     },
-    props: {
-    },
-    computed : {
-    },
-    methods : {
-        apply() {
-            // this.$store.commit('test/assignStr')
-            this.$store.dispatch('test/getStr',{
-                str: this.str,
-            })
-
+    mounted() {
+        UserService.getHello().then(
+            (res)=>{
+                console.log(res.data);
+                this.comp = res.data;
         },
-        sout() {
-            console.log("sout"+this.$store.state.str)
-            this.$store.state.str;
+        (error) => {
+            this.str =
+            (error.res && 
+            error.res.data &&
+            error.res.data.message) ||
+            error.message ||
+            error.toString();
         }
-    }
-}
+        );
+    },
+};
 </script>
+// ,    
+//     props: {
+//     },
+//     computed : {
+//     },
+//     methods : {
+//         apply() {
+//             // this.$store.commit('test/assignStr')
+//             this.$store.dispatch('test/getStr',{
+//                 str: this.str,
+//             })
+
+//         },
+//         sout() {
+//             console.log("sout"+this.$store.state.str)
+//             this.$store.state.str;
+//         }
+//     }
